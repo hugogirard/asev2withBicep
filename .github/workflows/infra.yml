@@ -1,0 +1,33 @@
+name: Create Azure Resources
+
+on:
+  push:
+  workflow_dispatch:
+
+env: 
+  LOCATION: 'eastus'
+  RESOURCE_GROUP_NAME: 'ase-v2-demo-rg'
+
+jobs:
+  create-resources:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Create Resource Group
+        run: |
+          az group create -n ${{ env.RESOURCE_GROUP_NAME }} -l ${{ env.LOCATION }}
+      - name: deploy
+        uses: azure/arm-deploy@v1
+        with:
+          subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
+          resourceGroupName: ${{ env.RESOURCE_GROUP_NAME }}
+          template: ./bicep/main.bicep
+          parameters: location=${{ env.LOCATION }}
