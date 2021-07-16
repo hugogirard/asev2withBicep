@@ -27,7 +27,7 @@ resource hostingEnvironment 'Microsoft.Web/hostingEnvironments@2020-06-01' = {
 }
 
 resource privateDnsZone 'Microsoft.Network/privateDnsZones@2018-09-01' = {
-  name: ''
+  name: '${aseName}.appserviceenvironment.net'
   location: 'global'
   dependsOn: [
     hostingEnvironment
