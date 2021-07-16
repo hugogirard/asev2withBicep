@@ -92,8 +92,11 @@ resource serverFarm 'Microsoft.Web/serverfarms@2020-06-01' = {
     }
   }
   sku: {
-    name: 'Isolated'
-    tier: 'I1'
+    name: 'I1'
+    tier: 'Isolated'
+    size: 'I1'
+    family: 'I'
+    capacity: 1
   }
 }
 
