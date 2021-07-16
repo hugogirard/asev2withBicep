@@ -44,42 +44,42 @@ resource vnetLink 'Microsoft.Network/privateDnsZones/virtualNetworkLinks@2018-09
   }
 }
 
-// resource aRecordOne 'Microsoft.Network/privateDnsZones/A@2018-09-01' = {
-//   name: '${privateDnsZone.name}/*'
-//   properties: {
-//     ttl: 3600
-//     aRecords: [
-//       {
-//         ipv4Address: reference('${hostingEnvironment.id}/capacities/virtualip','2019-08-01').internalIpAddress
-//       }
-//     ]
-//   }
-// }
+resource aRecordOne 'Microsoft.Network/privateDnsZones/A@2018-09-01' = {
+  name: '${privateDnsZone.name}/*'
+  properties: {
+    ttl: 3600
+    aRecords: [
+      {
+        ipv4Address: reference('${hostingEnvironment.id}/capacities/virtualip','2019-08-01').internalIpAddress
+      }
+    ]
+  }
+}
 
-// resource aRecordTwo 'Microsoft.Network/privateDnsZones/A@2018-09-01' = {
-//   name: '${privateDnsZone.name}/*'
-//   properties: {
-//     ttl: 3600
-//     aRecords: [
-//       {
-//         ipv4Address: reference('${hostingEnvironment.id}/capacities/virtualip','2019-08-01').internalIpAddress
-//       }
-//     ]
-//   }
-// }
+resource aRecordTwo 'Microsoft.Network/privateDnsZones/A@2018-09-01' = {
+  name: '${privateDnsZone.name}/*.scm'
+  properties: {
+    ttl: 3600
+    aRecords: [
+      {
+        ipv4Address: reference('${hostingEnvironment.id}/capacities/virtualip','2019-08-01').internalIpAddress
+      }
+    ]
+  }
+}
 
 
-// resource aRecordThree 'Microsoft.Network/privateDnsZones/A@2018-09-01' = {
-//   name: '${privateDnsZone.name}/@'
-//   properties: {
-//     ttl: 3600
-//     aRecords: [
-//       {
-//         ipv4Address: reference('${hostingEnvironment.id}/capacities/virtualip','2019-08-01').internalIpAddress
-//       }
-//     ]
-//   }
-// }
+resource aRecordThree 'Microsoft.Network/privateDnsZones/A@2018-09-01' = {
+  name: '${privateDnsZone.name}/@'
+  properties: {
+    ttl: 3600
+    aRecords: [
+      {
+        ipv4Address: reference('${hostingEnvironment.id}/capacities/virtualip','2019-08-01').internalIpAddress
+      }
+    ]
+  }
+}
 
 
 // resource serverFarm 'Microsoft.Web/serverfarms@2020-06-01' = {

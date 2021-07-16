@@ -21,6 +21,13 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
+      # Compiling only because seems OSPrefence property return error when
+      # deploying using the bicep template
+      - name: Bicep Build
+        uses: aliencube/bicep-build-actions@v0.1
+        with:
+          files: ./bicep/main.bicep
+
       - name: Create Resource Group
         run: |
           az group create -n ${{ env.RESOURCE_GROUP_NAME }} -l ${{ env.LOCATION }}
@@ -29,5 +36,5 @@ jobs:
         with:
           subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
           resourceGroupName: ${{ env.RESOURCE_GROUP_NAME }}
-          template: ./bicep/main.bicep
+          template: ./bicep/main.json
           parameters: location=${{ env.LOCATION }}
