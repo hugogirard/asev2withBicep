@@ -45,19 +45,22 @@ resource nsg 'Microsoft.Network/networkSecurityGroups@2020-07-01' = {
           destinationAddressPrefix: '*'
         }
       }
-      // {
-      //   name: 'Outbound-web'
-      //   properties: {
-      //     access: 'Allow'
-      //     direction: 'Outbound'
-      //     protocol: 'Tcp'
-      //     priority: 100
-      //     sourcePortRange: '*'
-      //     destinationPortRange: '[80,443]'
-      //     sourceAddressPrefix: '*'
-      //     destinationAddressPrefix: '*'
-      //   }
-      // }
+      {
+        name: 'Outbound-web'
+        properties: {
+          access: 'Allow'
+          direction: 'Outbound'
+          protocol: 'Tcp'
+          priority: 100
+          sourcePortRange: '*'
+          destinationPortRanges: [
+            '80'
+            '443'
+          ]
+          sourceAddressPrefix: '*'
+          destinationAddressPrefix: '*'
+        }
+      }
       {
         name: 'Time-NTP'
         properties: {
