@@ -160,6 +160,17 @@ resource vnet 'Microsoft.Network/virtualNetworks@2020-06-01' = {
           networkSecurityGroup: {
             id: nsg.id
           }
+          serviceEndpoints: [
+            {
+              service: 'Microsoft.Sql'
+            }
+            {
+              service: 'Microsoft.EventHub'
+            }
+            {
+              service: 'Microsoft.Storage'
+            }                        
+          ]
         }
       }
     ]
