@@ -4,7 +4,7 @@ param subnetId string
 param vnetId string
 
 var aseName = 'ase-${suffix}'
-//var appServicePlanName = 'app-plan-${suffix}'
+var appServicePlanName = 'app-plan-${suffix}'
 var internalLoadBalancingMode = 'Web,Publishing'
 //var workerPool = '1'
 
@@ -82,22 +82,20 @@ resource aRecordThree 'Microsoft.Network/privateDnsZones/A@2018-09-01' = {
 }
 
 
-// resource serverFarm 'Microsoft.Web/serverfarms@2020-06-01' = {
-//   name: appServicePlanName
-//   location: location
-//   properties: {
-//     hostingEnvironmentProfile: {
-//       id: hostingEnvironment.id
-//     }
-//   }
-//   sku: {
-//     name: 'I${workerPool}'
-//     tier: 'Isolated'
-//     size: 'I${workerPool}'
-//     family: 'I'
-//     capacity: 1
-//   }
-// }
+resource serverFarm 'Microsoft.Web/serverfarms@2020-06-01' = {
+  name: appServicePlanName
+  location: location
+  kind: 'linux'
+  properties: {
+    hostingEnvironmentProfile: {
+      id: hostingEnvironment.id
+    }
+  }
+  sku: {
+    name: 'Isolated'
+    tier: 'I1'
+  }
+}
 
 // resource website 'Microsoft.Web/sites@2020-06-01' = {
 //   name: websiteName
