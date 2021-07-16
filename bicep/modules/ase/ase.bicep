@@ -4,9 +4,9 @@ param vnetId string
 param subnetName string
 
 var aseName = 'ase-${suffix}'
-var appServicePlanName = 'app-plan-${suffix}'
+//var appServicePlanName = 'app-plan-${suffix}'
 var internalLoadBalancingMode = 'Web,Publishing'
-var workerPool = '1'
+//var workerPool = '1'
 
 resource hostingEnvironment 'Microsoft.Web/hostingEnvironments@2020-06-01' = {
   name: aseName
@@ -26,24 +26,24 @@ resource hostingEnvironment 'Microsoft.Web/hostingEnvironments@2020-06-01' = {
   }
 }
 
-resource privateDnsZone 'Microsoft.Network/privateDnsZones@2018-09-01' = {
-  name: '${aseName}.appserviceenvironment.net'
-  location: 'global'
-  dependsOn: [
-    hostingEnvironment
-  ]
-}
+// resource privateDnsZone 'Microsoft.Network/privateDnsZones@2018-09-01' = {
+//   name: '${aseName}.appserviceenvironment.net'
+//   location: 'global'
+//   dependsOn: [
+//     hostingEnvironment
+//   ]
+// }
 
-resource vnetLink 'Microsoft.Network/privateDnsZones/virtualNetworkLinks@2018-09-01' = {
-  name: '${privateDnsZone.name}/vnetLink'
-  location: 'global'
-  properties: {
-    virtualNetwork: {
-      id: vnetId
-    }
-    registrationEnabled: true
-  }
-}
+// resource vnetLink 'Microsoft.Network/privateDnsZones/virtualNetworkLinks@2018-09-01' = {
+//   name: '${privateDnsZone.name}/vnetLink'
+//   location: 'global'
+//   properties: {
+//     virtualNetwork: {
+//       id: vnetId
+//     }
+//     registrationEnabled: true
+//   }
+// }
 
 // resource aRecordOne 'Microsoft.Network/privateDnsZones/A@2018-09-01' = {
 //   name: '${privateDnsZone.name}/*'
