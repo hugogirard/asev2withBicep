@@ -17,5 +17,6 @@ module ase './modules/ase/ase.bicep' = {
     location: location
     suffix: suffix
     subnetId: vnet.outputs.aseSubnetId
+    vnetId: vnet.outputs.vnetId
   }
 }

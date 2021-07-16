@@ -1,7 +1,7 @@
 param location string
 param suffix string
 param subnetId string
-
+param vnetId string
 
 var aseName = 'ase-${suffix}'
 //var appServicePlanName = 'app-plan-${suffix}'
