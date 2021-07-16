@@ -5,6 +5,7 @@ param vnetId string
 
 var aseName = 'ase-${suffix}'
 var appServicePlanName = 'app-plan-${suffix}'
+var websiteName = 'webapp=${suffix}'
 var internalLoadBalancingMode = 'Web,Publishing'
 //var workerPool = '1'
 
@@ -100,14 +101,14 @@ resource serverFarm 'Microsoft.Web/serverfarms@2020-06-01' = {
   }
 }
 
-// resource website 'Microsoft.Web/sites@2020-06-01' = {
-//   name: websiteName
-//   location: location
-//   properties: {
-//     serverFarmId: serverFarm.id
-//     hostingEnvironmentProfile: {
-//       id: hostingEnvironment.id
-//     }
-//   }
-// }
+resource website 'Microsoft.Web/sites@2020-06-01' = {
+  name: websiteName
+  location: location
+  properties: {
+    serverFarmId: serverFarm.id
+    hostingEnvironmentProfile: {
+      id: hostingEnvironment.id
+    }
+  }
+}
 
