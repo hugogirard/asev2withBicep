@@ -1,7 +1,7 @@
 param location string
 param suffix string
-param vnetId string
-param subnetName string
+param subnetId string
+
 
 var aseName = 'ase-${suffix}'
 //var appServicePlanName = 'app-plan-${suffix}'
@@ -18,8 +18,7 @@ resource hostingEnvironment 'Microsoft.Web/hostingEnvironments@2020-06-01' = {
     ipsslAddressCount: 0
     internalLoadBalancingMode: internalLoadBalancingMode
     virtualNetwork: {
-      id: vnetId
-      subnet: subnetName
+      id: subnetId
     }
     workerPools: []
     osPreference: 'linux'

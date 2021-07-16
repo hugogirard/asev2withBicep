@@ -15,8 +15,7 @@ module ase './modules/ase/ase.bicep' = {
   name: 'ase'
   params: {
     location: location
-    subnetName: vnet.outputs.subnetName
     suffix: suffix
-    vnetId: vnet.outputs.vnetId
+    subnetId: vnet.outputs.aseSubnetId
   }
 }
