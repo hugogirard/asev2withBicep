@@ -3,6 +3,7 @@ param suffix string
 
 resource nsg 'Microsoft.Network/networkSecurityGroups@2020-07-01' = {
   name: 'nsg-ase'
+  location: location
   properties: {
     securityRules: [
       {
