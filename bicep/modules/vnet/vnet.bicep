@@ -53,7 +53,7 @@ resource nsg 'Microsoft.Network/networkSecurityGroups@2020-07-01' = {
           protocol: 'Tcp'
           priority: 100
           sourcePortRange: '*'
-          destinationPortRange: '80,443'
+          destinationPortRange: '[80,443]'
           sourceAddressPrefix: '*'
           destinationAddressPrefix: '*'
         }
