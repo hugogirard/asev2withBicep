@@ -5,7 +5,7 @@ param vnetId string
 
 var aseName = 'ase-${suffix}'
 var appServicePlanName = 'app-plan-${suffix}'
-var websiteName = 'webapp=${suffix}'
+var websiteName = 'webapp-${suffix}'
 var internalLoadBalancingMode = 'Web,Publishing'
 //var workerPool = '1'
 
