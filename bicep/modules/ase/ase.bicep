@@ -25,61 +25,61 @@ resource hostingEnvironment 'Microsoft.Web/hostingEnvironments@2020-06-01' = {
   }
 }
 
-// resource privateDnsZone 'Microsoft.Network/privateDnsZones@2018-09-01' = {
-//   name: '${aseName}.appserviceenvironment.net'
-//   location: 'global'
-//   dependsOn: [
-//     hostingEnvironment
-//   ]
-// }
+resource privateDnsZone 'Microsoft.Network/privateDnsZones@2018-09-01' = {
+  name: '${aseName}.appserviceenvironment.net'
+  location: 'global'
+  dependsOn: [
+    hostingEnvironment
+  ]
+}
 
-// resource vnetLink 'Microsoft.Network/privateDnsZones/virtualNetworkLinks@2018-09-01' = {
-//   name: '${privateDnsZone.name}/vnetLink'
-//   location: 'global'
-//   properties: {
-//     virtualNetwork: {
-//       id: vnetId
-//     }
-//     registrationEnabled: true
-//   }
-// }
+resource vnetLink 'Microsoft.Network/privateDnsZones/virtualNetworkLinks@2018-09-01' = {
+  name: '${privateDnsZone.name}/vnetLink'
+  location: 'global'
+  properties: {
+    virtualNetwork: {
+      id: vnetId
+    }
+    registrationEnabled: true
+  }
+}
 
-// resource aRecordOne 'Microsoft.Network/privateDnsZones/A@2018-09-01' = {
-//   name: '${privateDnsZone.name}/*'
-//   properties: {
-//     ttl: 3600
-//     aRecords: [
-//       {
-//         ipv4Address: reference('${hostingEnvironment.id}/capacities/virtualip','2019-08-01').internalIpAddress
-//       }
-//     ]
-//   }
-// }
+resource aRecordOne 'Microsoft.Network/privateDnsZones/A@2018-09-01' = {
+  name: '${privateDnsZone.name}/*'
+  properties: {
+    ttl: 3600
+    aRecords: [
+      {
+        ipv4Address: reference('${hostingEnvironment.id}/capacities/virtualip','2019-08-01').internalIpAddress
+      }
+    ]
+  }
+}
 
-// resource aRecordTwo 'Microsoft.Network/privateDnsZones/A@2018-09-01' = {
-//   name: '${privateDnsZone.name}/*'
-//   properties: {
-//     ttl: 3600
-//     aRecords: [
-//       {
-//         ipv4Address: reference('${hostingEnvironment.id}/capacities/virtualip','2019-08-01').internalIpAddress
-//       }
-//     ]
-//   }
-// }
+resource aRecordTwo 'Microsoft.Network/privateDnsZones/A@2018-09-01' = {
+  name: '${privateDnsZone.name}/*'
+  properties: {
+    ttl: 3600
+    aRecords: [
+      {
+        ipv4Address: reference('${hostingEnvironment.id}/capacities/virtualip','2019-08-01').internalIpAddress
+      }
+    ]
+  }
+}
 
 
-// resource aRecordThree 'Microsoft.Network/privateDnsZones/A@2018-09-01' = {
-//   name: '${privateDnsZone.name}/@'
-//   properties: {
-//     ttl: 3600
-//     aRecords: [
-//       {
-//         ipv4Address: reference('${hostingEnvironment.id}/capacities/virtualip','2019-08-01').internalIpAddress
-//       }
-//     ]
-//   }
-// }
+resource aRecordThree 'Microsoft.Network/privateDnsZones/A@2018-09-01' = {
+  name: '${privateDnsZone.name}/@'
+  properties: {
+    ttl: 3600
+    aRecords: [
+      {
+        ipv4Address: reference('${hostingEnvironment.id}/capacities/virtualip','2019-08-01').internalIpAddress
+      }
+    ]
+  }
+}
 
 
 // resource serverFarm 'Microsoft.Web/serverfarms@2020-06-01' = {
