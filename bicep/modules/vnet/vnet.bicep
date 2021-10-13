@@ -183,10 +183,20 @@ resource vnet 'Microsoft.Network/virtualNetworks@2020-06-01' = {
           ]
         }
       }
+      {
+        name: 'ase-jumpbox'
+        properties: {
+          addressPrefix: '10.0.2.0/24'
+          networkSecurityGroup: {
+            id: nsgJumpbox.id
+          }
+        }
+      }
     ]
   }
 }
 
 output aseSubnetId string = vnet.properties.subnets[0].id
+output jumpboxSubnetId string = vnet.properties.subnets[1].id
 output vnetId string = vnet.id
-//output subnetName string = subnet.name
+

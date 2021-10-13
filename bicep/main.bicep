@@ -1,5 +1,11 @@
 param location string
 
+@secure()
+param adminUsername string
+
+@secure()
+param adminPassword string
+
 
 var suffix = uniqueString(resourceGroup().id)
 
@@ -36,5 +42,14 @@ module webapp './modules/webapp/nodeapp.bicep' = {
     appInsightKey: logging.outputs.appInsightKey
     location: location
     serverFarmId: ase.outputs.serverFarmId
+  }
+}
+module compute 'modules/compute/windows.bicep' = {
+  name: 'compute'
+  params: {
+    adminPassword: adminPassword
+    adminUsername: adminUsername
+    location: location
+    subnetId: vnet.outputs.jumpboxSubnetId
   }
 }
