@@ -143,6 +143,16 @@ resource nsg 'Microsoft.Network/networkSecurityGroups@2020-07-01' = {
   }
 }
 
+resource nsgJumpbox 'Microsoft.Network/networkSecurityGroups@2020-07-01' = {
+  name: 'nsg-jumpbox'
+  location: location
+  properties: {
+    securityRules: [
+      
+    ]
+  }
+}
+
 resource vnet 'Microsoft.Network/virtualNetworks@2020-06-01' = {
   name: 'vnet-${suffix}'
   location: location
