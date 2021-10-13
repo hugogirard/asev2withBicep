@@ -28,3 +28,13 @@ module ase './modules/ase/ase.bicep' = {
     vnetId: vnet.outputs.vnetId
   }
 }
+
+module webapp './modules/webapp/nodeapp.bicep' = {
+  name: 'webapp'
+  params: {
+    appInsightCnxString: logging.outputs.appInsightCnxString
+    appInsightKey: logging.outputs.appInsightKey
+    location: location
+    serverFarmId: ase.outputs.serverFarmId
+  }
+}

@@ -108,14 +108,5 @@ resource serverFarm 'Microsoft.Web/serverfarms@2018-02-01' = {
   }
 }
 
-// resource website 'Microsoft.Web/sites@2020-06-01' = {
-//   name: websiteName
-//   location: location
-//   properties: {
-//     serverFarmId: serverFarm.id
-//     hostingEnvironmentProfile: {
-//       id: hostingEnvironment.id
-//     }
-//   }
-// }
+output serverFarmId string = serverFarm.id
 
