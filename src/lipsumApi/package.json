@@ -1,0 +1,16 @@
+{
+  "name": "lipsumApi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "simple-lipsum": "^0.1.5"
+  }
+}
